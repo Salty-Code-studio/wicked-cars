@@ -11,7 +11,7 @@
 <meta property="og:image" content="https://salty-code-studio.github.io/wicked-cars/assets/img/hero-wall.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/favicon.jpg">
-<link rel="preload" as="image" href="assets/img/hero-wall.jpg">
+<link rel="preload" as="image" href="assets/video/poster.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..800&family=Big+Shoulders+Display:wght@800;900&display=swap" rel="stylesheet">
@@ -68,9 +68,10 @@ h2{font-size:clamp(44px,5.6vw,84px)}
 
 /* hero */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;isolation:isolate;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:-2;background:url(assets/img/hero-wall.jpg) 60% 44%/cover no-repeat;animation:settle 2.4s var(--ease) both}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:url(assets/video/poster.jpg) 60% 44%/cover no-repeat;animation:settle 2.4s var(--ease) both}
+.hero-bg video{width:100%;height:100%;object-fit:cover;object-position:60% 50%;display:block}
 @keyframes settle{from{transform:scale(1.07)}to{transform:none}}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,var(--bg) 0%,rgba(14,14,15,.82) 26%,rgba(14,14,15,.2) 62%,rgba(14,14,15,.45) 100%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,var(--bg) 0%,rgba(14,14,15,.55) 18%,rgba(14,14,15,0) 46%,rgba(14,14,15,0) 80%,rgba(14,14,15,.35) 100%)}
 .hero .wrap{width:100%;padding-top:120px;padding-bottom:clamp(40px,8vh,88px);display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
 .hero h1{font-size:clamp(58px,8.6vw,138px)}
 .hero h1 span{display:block}
@@ -81,7 +82,7 @@ h2{font-size:clamp(44px,5.6vw,84px)}
 @keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 .hero-aside{font-size:14px;color:var(--ink-2);text-align:right;line-height:1.5;animation:up 1s .4s var(--ease) both}
 .hero-aside b{display:block;color:var(--ink);font-size:15px}
-@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero-aside{display:none}.hero-bg{background-position:52% 30%}}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero-aside{display:none}.hero-bg{background-position:52% 30%}.hero-bg video{object-position:50% 50%}}
 
 /* intro: asymmetric statement + photo */
 .intro{padding:clamp(80px,11vw,150px) 0 clamp(60px,8vw,110px)}
@@ -303,7 +304,9 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
 <main id="top">
 
 <section class="hero">
-  <div class="hero-bg" role="img" aria-label="Grijze BMW E36 met oranje strepen drift langs de muur op een natte baan"></div>
+  <div class="hero-bg" role="img" aria-label="Driftende BMW's van Wickedcars op het circuit">
+    <video id="heroVideo" muted loop playsinline preload="metadata" poster="assets/video/poster.jpg" aria-hidden="true"></video>
+  </div>
   <div class="wrap">
     <div class="hero-in">
       <h1><span>We fixen je</span><span class="o">wicked car.</span></h1>
@@ -502,6 +505,15 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const WA = 'https://wa.me/31352031033?text=';
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // hero video: portrait cut on phones, landscape elsewhere; stays a still image for reduced motion
+  const hv = $('#heroVideo');
+  if (hv && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const portrait = matchMedia('(max-width: 760px) and (orientation: portrait)').matches;
+    if (portrait) hv.src = 'assets/video/hero-1080x1350.mp4';
+    else { hv.innerHTML = '<source src="assets/video/hero-1920x1080.webm" type="video/webm"><source src="assets/video/hero-1920x1080.mp4" type="video/mp4">'; hv.load(); }
+    hv.play().catch(() => {});
+  }
 
   // nav turns solid once the hero copy scrolls under it
   const nav = $('#nav');
