@@ -29,7 +29,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 ::selection{background:var(--orange);color:var(--bg)}
@@ -90,7 +90,7 @@ h2{font-size:clamp(44px,5.6vw,84px)}
 .intro .statement{font-size:clamp(26px,2.7vw,40px);line-height:1.22;font-weight:500;letter-spacing:-.01em;font-stretch:92%}
 .intro .statement em{font-style:normal;color:var(--orange-text)}
 .intro .statement + p{margin-top:24px;color:var(--ink-2);max-width:50ch}
-.intro figure img{width:100%;aspect-ratio:5/4;object-fit:cover;object-position:50% 82%}
+.intro figure img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:55% 60%}
 .intro figure figcaption{margin-top:10px;font-size:13px;color:var(--ink-3)}
 @media (max-width:860px){.intro .wrap{grid-template-columns:1fr}.intro figure img{aspect-ratio:4/3}}
 
@@ -243,7 +243,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--orange);outline:none}
 .cause .figs{display:flex;gap:32px;margin:22px 0 28px}
 .cause .figs b{font-family:var(--display);font-weight:900;font-size:44px;line-height:1;color:var(--orange-text);display:block}
 .cause .figs span{font-size:14px;color:var(--ink-2)}
-@media (max-width:760px){.cause::after{background:linear-gradient(0deg,rgba(14,14,15,.96) 0%,rgba(14,14,15,.8) 55%,rgba(14,14,15,.2) 100%)}}
+@media (max-width:760px){.cause{display:block;min-height:0}.cause > img{position:static;height:auto;aspect-ratio:4/3;object-position:62% 35%}.cause::after{display:none}.cause .wrap{padding-top:28px}}
 
 /* contact */
 .contact{padding:clamp(80px,10vw,140px) 0 clamp(50px,6vw,80px)}
@@ -327,8 +327,8 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
       <p>Kom je voor een beurt, dan krijg je dezelfde aandacht als onze eigen wagens. Gaat er iets mis, dan hoor je eerlijk wat het kost voordat we beginnen.</p>
     </div>
     <figure class="rv">
-      <img src="assets/img/pair-golden.jpg" alt="Twee BMW E46 sedans van Wickedcars, een met oranje velgen" loading="lazy" width="1800" height="1200">
-      <figcaption>Onze eigen E46's, klaar voor het circuit.</figcaption>
+      <img src="assets/img/intro-pair.jpg" alt="Twee driftauto's van Wickedcars, een groene en een roze BMW E36, naast elkaar langs de muur" loading="lazy" width="1600" height="853">
+      <figcaption>Onze eigen driftauto's, zij aan zij langs de muur.</figcaption>
     </figure>
   </div>
 </section>
@@ -372,9 +372,9 @@ footer nav{display:flex;gap:20px;flex-wrap:wrap}
   <div class="pin">
     <div class="stage">
       <div class="stage-copy">
-        <div class="step on"><img src="assets/img/three-cars.jpg" alt="Drie BMW's op Midland Circuit" loading="lazy"><span class="t">11:30</span><h3>Aankomen op Midland.</h3><p>Uitleg van onze instructeurs. Zij driften zelf al jaren en leggen het rustig uit.</p></div>
-        <div class="step"><img src="assets/img/headon-stripe.jpg" alt="BMW met oranje streep in een bocht" loading="lazy"><span class="t">Eerst één bocht</span><h3>Gas, stuur, tegensturen.</h3><p>Je oefent één bocht tot hij goed voelt. Veilig en gecontroleerd.</p></div>
-        <div class="step"><img src="assets/img/tandem.jpg" alt="Twee BMW's driften naast elkaar" loading="lazy"><span class="t">Dan de rest</span><h3>Een volle ronde.</h3><p>Bocht voor bocht bouw je het op, tot je de hele ronde zijwaarts rijdt.</p></div>
+        <div class="step on"><img src="assets/img/three-cars-m.jpg" alt="Drie BMW's op Midland Circuit" loading="lazy"><span class="t">11:30</span><h3>Aankomen op Midland.</h3><p>Uitleg van onze instructeurs. Zij driften zelf al jaren en leggen het rustig uit.</p></div>
+        <div class="step"><img src="assets/img/headon-stripe-m.jpg" alt="BMW met oranje streep in een bocht" loading="lazy"><span class="t">Eerst één bocht</span><h3>Gas, stuur, tegensturen.</h3><p>Je oefent één bocht tot hij goed voelt. Veilig en gecontroleerd.</p></div>
+        <div class="step"><img src="assets/img/tandem-m.jpg" alt="Twee BMW's driften naast elkaar" loading="lazy"><span class="t">Dan de rest</span><h3>Een volle ronde.</h3><p>Bocht voor bocht bouw je het op, tot je de hele ronde zijwaarts rijdt.</p></div>
         <div class="step"><img src="assets/img/harness.jpg" alt="Kuipstoel met oranje zespuntsgordels" loading="lazy"><span class="t">De auto</span><h3>BMW 325i E46.</h3><p>Speciaal gebouwd om te driften: kuipstoelen, zespuntsgordels, lockkit en een hydraulische handrem. Je eigen auto mag ook.</p></div>
         <div class="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
       </div>
